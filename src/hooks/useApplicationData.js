@@ -11,14 +11,9 @@
 
 */
 
-import React, { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "components/Application.scss";
-import DayListItem from "../components/DayListItem";
-import DayList from "../components/DayList";
-import Appointment from "../components/Appointment";
-import InterviewListItem from "../components/InterviewerListItem";
 import axios from 'axios';
-import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "../helpers/selectors"
 
 export default function useApplicationData() {
   // refactoring to combine states
@@ -59,7 +54,7 @@ export default function useApplicationData() {
         ))
       });
    
-  },[] /*[state.days]*/);
+  },[] /*[state.days]*/); //commented out dep. arr works for updating spots w/o refreshing page.
 
   //bookInterview function
   function bookInterview(id, interview) {

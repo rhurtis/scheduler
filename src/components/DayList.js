@@ -7,10 +7,8 @@ day:String the currently selected day
 setDay:Function accepts the name of the day eg. "Monday", "Tuesday"
 */
 
-
 import React from "react";
 import DayListItem from "components/DayListItem";
-import classNames from 'classnames';
 
 export default function DayList(props) {
 

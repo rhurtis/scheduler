@@ -1,11 +1,8 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
 import "components/Application.scss";
-import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import InterviewListItem from "./InterviewerListItem";
-import axios from 'axios';
-import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors"
+import {getInterview, getInterviewersForDay} from "helpers/selectors"
 import useApplicationData from "hooks/useApplicationData"
 
 export default function Application(props) {

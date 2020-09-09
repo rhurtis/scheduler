@@ -11,10 +11,10 @@ setInterviewer:function - a function that accepts an interviewer id
 import React from 'react';
 import InterviewerListItem from "components/InterviewerListItem.js";
 import "components/InterviewerList.scss";
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function InterviewerList(props) {
-  const interviewerClass = classNames("interviewers");
+
+ function InterviewerList(props) {
   const interviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem
@@ -34,3 +34,9 @@ export default function InterviewerList(props) {
     </section>
   )
 }
+
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};
+
+export default InterviewerList;
