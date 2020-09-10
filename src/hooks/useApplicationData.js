@@ -43,6 +43,7 @@ export default function useApplicationData() {
     Promise
       .all([daysRequest, appointmentsRequest, interviewersRequest])
       .then(function(resp) {
+        console.log('here is the resp data', resp[0].data)
         setState(prev => (
           {
             ...prev,
@@ -52,12 +53,37 @@ export default function useApplicationData() {
 
           }
         ))
+      })
+      .catch((error) => {
+        console.log('There was an error with the axios get request:',error);
       });
+
    
-  },[] /*[state.days]*/); //commented out dep. arr works for updating spots w/o refreshing page.
+  },[]/*[state.days[].spots] [state.days]*/); //commented out dep. arr works for updating spots w/o refreshing page.
 
   //bookInterview function
   function bookInterview(id, interview) {
+
+    const getDay = (appointment)=>{
+      return state.days.filter(day => day.appointments.includes(appointment))[0]
+    }
+    let day = getDay(id)
+    let new_day = {
+      ...day,
+      spots: day.spots -1
+    }
+
+    let new_days = state.days
+    for(let i =0; i < state.days.length; i++){
+      if(state.days[i].id === new_day.id){
+        new_days.splice(i, 1, new_day)
+      }
+    }
+
+    console.log(`new day: ${JSON.stringify(new_day)}`)
+    console.log(`state.days: ${JSON.stringify(state.days)}`)
+
+
     console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
@@ -73,7 +99,8 @@ export default function useApplicationData() {
       .then(() => {
         setState({
           ...state,
-          appointments
+          appointments,
+          days: new_days
         });    
       })
     )  
@@ -82,6 +109,21 @@ export default function useApplicationData() {
   //the cancelInterview function
   function cancelInterview(id) {
     //console.log('The cancelInterview fcn has beel called. The appointment ID is: ', id);
+    const getDay = (appointment)=>{
+      return state.days.filter(day => day.appointments.includes(appointment))[0]
+    }
+    let day = getDay(id)
+    let new_day = {
+      ...day,
+      spots: day.spots +1
+    }
+
+    let new_days = state.days
+    for(let i =0; i < state.days.length; i++){
+      if(state.days[i].id === new_day.id){
+        new_days.splice(i, 1, new_day)
+      }
+    }
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -96,7 +138,8 @@ export default function useApplicationData() {
         .then(() => {
           setState({
           ...state,
-          appointments
+          appointments,
+          days: new_days
           })
         })
     )

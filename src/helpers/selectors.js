@@ -32,26 +32,34 @@ export function getInterview(state, interview) {
 // getInterviewerForDay selector
 export function getInterviewersForDay(state, day) {
   
-  const dayFound = state.days.find(dayObj => {
-    return dayObj.name === day
-  })
+  // const dayFound = state.days.find(dayObj => {
+  //   return dayObj.name === day
+  // })
   
-  if (!dayFound) {
-    return [];
-  }
+  // if (!dayFound) {
+  //   return [];
+  // }
 
-  const appointmentsID = dayFound.appointments;
-  const interviewers = [];
+  // const appointmentsID = dayFound.appointments;
+  // const interviewers = [];
   
-  for (let appID of appointmentsID){
-    const appointment = state.appointments[appID];
-    const interview = appointment.interview;
+  // for (let appID of appointmentsID){
+  //   const appointment = state.appointments[appID];
+  //   const interview = appointment.interview;
     
-    if (interview !== null) {
-      const interviewerID = interview.interviewer;
-      interviewers.push(state.interviewers[interviewerID]);
-    }
-  }
+  //   if (interview !== null) {
+  //     const interviewerID = interview.interviewer;
+  //     interviewers.push(state.interviewers[interviewerID]);
+  //   }
+  // }
+
+  const dayFound = state.days.find(d => day === d.name)
+
+  if (state.days.length === 0 || dayFound === undefined || dayFound.interviewers === undefined) return []
+
+  let interviewers = dayFound.interviewers.map( id => state.interviewers[id])
+
+  console.log(`helper interviewyrs: ${JSON.stringify(interviewers)}`)
   return interviewers;
 }
 
