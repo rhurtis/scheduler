@@ -1,7 +1,7 @@
 // getAppointmentsForDay function
 
 export function getAppointmentsForDay(state, day) {
-  console.log('you are in the getAppointmentsForDay fcn');
+  //console.log('you are in the getAppointmentsForDay fcn');
   const dayFound = state.days.find(dayObj => dayObj.name === day)
   if (!dayFound) {
     return [];
@@ -59,7 +59,7 @@ export function getInterviewersForDay(state, day) {
 
   let interviewers = dayFound.interviewers.map( id => state.interviewers[id])
 
-  console.log(`helper interviewyrs: ${JSON.stringify(interviewers)}`)
+  //console.log(`helper interviewyrs: ${JSON.stringify(interviewers)}`)
   return interviewers;
 }
 

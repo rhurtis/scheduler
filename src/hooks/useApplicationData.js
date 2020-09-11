@@ -43,7 +43,7 @@ export default function useApplicationData() {
     Promise
       .all([daysRequest, appointmentsRequest, interviewersRequest])
       .then(function(resp) {
-        console.log('here is the resp data', resp[0].data)
+       // console.log('here is the resp data', resp[0].data)
         setState(prev => (
           {
             ...prev,
@@ -73,18 +73,18 @@ export default function useApplicationData() {
       spots: day.spots -1
     }
 
-    let new_days = state.days
+    let new_days = [...state.days]
     for(let i =0; i < state.days.length; i++){
       if(state.days[i].id === new_day.id){
         new_days.splice(i, 1, new_day)
       }
     }
 
-    console.log(`new day: ${JSON.stringify(new_day)}`)
-    console.log(`state.days: ${JSON.stringify(state.days)}`)
+    // console.log(`new day: ${JSON.stringify(new_day)}`)
+    // console.log(`state.days: ${JSON.stringify(state.days)}`)
 
 
-    console.log(id, interview);
+    //console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -118,7 +118,7 @@ export default function useApplicationData() {
       spots: day.spots +1
     }
 
-    let new_days = state.days
+    let new_days = [...state.days]
     for(let i =0; i < state.days.length; i++){
       if(state.days[i].id === new_day.id){
         new_days.splice(i, 1, new_day)

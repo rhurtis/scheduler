@@ -21,11 +21,13 @@ export default function DayListItem(props) {
   //console.log(props.spots);
 
   const formatSpots = function () {
+    console.log('actual spots remaining before if', props.spots);
     if (props.spots === 0) {
       return 'no spots remaining'
     } else if (props.spots === 1) {
       return '1 spot remaining'
     } else  {
+      console.log('here are the actual spots remaining',props.spots);
       return `${props.spots} spots remaining`
     }
   }
