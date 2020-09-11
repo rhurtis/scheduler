@@ -2,8 +2,10 @@ import React from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import {getInterview, getInterviewersForDay} from "helpers/selectors"
+import {getInterview, getInterviewersForDay, getAppointmentsForDay} from "helpers/selectors"
 import useApplicationData from "hooks/useApplicationData"
+import Header from "components/Appointment/Header"
+
 
 export default function Application(props) {
   const {
@@ -14,10 +16,12 @@ export default function Application(props) {
   } = useApplicationData();
 
   //using the getInterviewByDay selector
-  const interviewers = getInterviewersForDay(state, state.day)
-    
-  const schedule = Object.values(state.appointments).map((appointment) => {
+  const interviewers = getInterviewersForDay(state, state.day) //returns the interviewers for a specific day.
+  const appointments = getAppointmentsForDay(state, state.day) //returns the appointments for a specific day.
+  
+  const schedule = Object.values(/*state.appointments*/appointments).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
         key={appointment.id}
@@ -64,6 +68,10 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
+        <article className="appointment" data-testid="appointment" >
+          <Header time='5pm'  />
+        </article>
+
       </section>
     </main>
   );

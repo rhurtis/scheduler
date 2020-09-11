@@ -25,8 +25,13 @@ export default function useApplicationData() {
   });
 
   //creating a setDay function that updates the state with the new day.
-  const setDay = day => setState(prev => ({ ...prev, day }));
-
+  const setDay = (day) => {
+    console.log("setDay was called. Here is the day selected: ", day)
+    setState(prev => ({ ...prev, day }))
+    
+  }
+  console.log('As a result of the setDay fcn here is the new state: ', state.day)
+  
   // const [results, setResults] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
