@@ -69,9 +69,11 @@ export default function Application(props) {
       <section className="schedule">
         {schedule}
         <article className="appointment" data-testid="appointment" >
-          <Header time=/*'5pm'*/{props.time}  />
+          <Header time={props.time}  />
         </article>
-
+        <article className="appointment" data-testid="appointment" >
+          <Header time='5pm'  />
+        </article>
       </section>
     </main>
   );
