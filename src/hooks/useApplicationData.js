@@ -110,6 +110,53 @@ export default function useApplicationData() {
       })
     )  
   };
+  // ------------------------------------------------------------------------------------------------------------------------
+  //bookInterviewedit function
+  function bookInterviewEdit(id, interview) {
+
+    const getDay = (appointment)=>{
+      return state.days.filter(day => day.appointments.includes(appointment))[0]
+    }
+    let day = getDay(id)
+    let new_day = {
+      ...day,
+      spots: day.spots
+    }
+
+    let new_days = [...state.days]
+    for(let i =0; i < state.days.length; i++){
+      if(state.days[i].id === new_day.id){
+        new_days.splice(i, 1, new_day)
+      }
+    }
+
+    // console.log(`new day: ${JSON.stringify(new_day)}`)
+    // console.log(`state.days: ${JSON.stringify(state.days)}`)
+
+
+    //console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    //making a put request with axios to update the database with the appointment data.
+    return (
+    axios.put(`http://localhost:8001/api/appointments/${id}`, {id,interview} )
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+          days: new_days
+        });    
+      })
+    )  
+  };
+
+  // ------------------------------------------------------------------------------------------------------------------------
 
   //the cancelInterview function
   function cancelInterview(id) {
@@ -155,6 +202,7 @@ export default function useApplicationData() {
       state: state,
       setDay: setDay,
       bookInterview: bookInterview,
+      bookInterviewEdit: bookInterviewEdit,
       cancelInterview: cancelInterview
     }
   )

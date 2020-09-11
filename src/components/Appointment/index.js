@@ -62,7 +62,24 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true);
       })
   }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------
+  //Fcn for saving after an edit so that no spots are removed.
+  const saveEdit = function (name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    
+    transition(STATUS);//saving animation
+    props.bookInterviewEdit(props.id, interview)
+      .then (() => {
+        transition(SHOW);
+      })
+      .catch((error) => {
+        transition(ERROR_SAVE, true);
+      })
+  }
+//-------------------------------------------------------------------------------------------------------------------------------------------
   // deleteInterview function used to delete interview (onDelete action), uses the cancelInterview function/prop.
   const deleteInterview = function(id) {
     //console.log('delete button was clicked. The ID is: ', props.id);
@@ -86,7 +103,7 @@ export default function Appointment(props) {
       {mode===STATUS ? <Status  message="Saving..." /> :null }
       {mode===CONFIRM ? <Confirm  message="Are you sure you want to delete?" id={props.id} onCancel={onCancel} onConfirm={() => {deleteInterview(props.id)}}/>: null}
       {mode===DELETE ? <Status  mode={mode} message="Deleting" /> : null}
-      {mode===EDIT ? <Form  interviewers={props.interviewers} onCancel={onCancel} onSave={save}/>: null}
+      {mode===EDIT ? <Form  interviewers={props.interviewers} onCancel={onCancel} onSave={saveEdit}/>: null}
       {mode===ERROR_SAVE ? <Error  onClose={onClose} message="Error" /> : null}
       {mode===ERROR_DELETE ? <Error  onClose={onClose} message="Error" /> : null}
     </article>
