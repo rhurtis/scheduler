@@ -1,4 +1,5 @@
 # Interview Scheduler
+A full stack web application built with React that allows users to book appointments.
 
 ## Setup
 
@@ -21,3 +22,8 @@ npm test
 ```sh
 npm run storybook
 ```
+## Final Product
+
+!["Main display page"](docs/main-page.png)
+!["Booking form"](docs/add-booking.png)
+!["Delete Confirmation"](docs/delete-booking.png)
