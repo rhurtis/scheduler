@@ -16,11 +16,11 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-  //using the getInterviewByDay selector
+  
   const interviewers = getInterviewersForDay(state, state.day) //returns the interviewers for a specific day.
   const appointments = getAppointmentsForDay(state, state.day) //returns the appointments for a specific day.
   
-  const schedule = Object.values(/*state.appointments*/appointments).map((appointment) => {
+  const schedule = Object.values(appointments).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -36,15 +36,6 @@ export default function Application(props) {
       />
     );
   });
-
-  /*
-   TESTING FOR UPDATING SPOTS ASSIGNMENT
-  //trying to get the appointments per day as a value.
-  //testing appointments
-  console.log('showing appointments per day',state.appointments)
-  console.log('the output from the getAppointmentsForDay function',getAppointmentsForDay(state, "Monday"))
-
-  */
 
   return (
     <main className="layout">

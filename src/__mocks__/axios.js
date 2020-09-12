@@ -91,8 +91,6 @@ export default {
       });
     }
   }),
-
-  //put request
   put: jest.fn(url => {
    
       return Promise.resolve({

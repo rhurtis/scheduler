@@ -1,4 +1,3 @@
-// The DayList component
 /*
 Our DayList component will take in three props.
 

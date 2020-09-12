@@ -41,19 +41,16 @@ export default function Appointment(props) {
       }
   }
 
-  //onClose for the error screen
   const onClose = function() {
     back(SHOW);
   }
 
-  // save function used with onSave action and bookInterview
   const save = function (name, interviewer) {
-    //console.log('here is the save fcn', props.id);
     const interview = {
       student: name,
       interviewer
     };
-    transition(STATUS);//saving animation
+    transition(STATUS);
     props.bookInterview(props.id, interview)
       .then (() => {
         transition(SHOW);
@@ -62,15 +59,14 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true);
       })
   }
-//--------------------------------------------------------------------------------------------------------------------------------------------
-  //Fcn for saving after an edit so that no spots are removed.
+
   const saveEdit = function (name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
     
-    transition(STATUS);//saving animation
+    transition(STATUS);
     props.bookInterviewEdit(props.id, interview)
       .then (() => {
         transition(SHOW);
@@ -79,10 +75,8 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true);
       })
   }
-//-------------------------------------------------------------------------------------------------------------------------------------------
-  // deleteInterview function used to delete interview (onDelete action), uses the cancelInterview function/prop.
+
   const deleteInterview = function(id) {
-    //console.log('delete button was clicked. The ID is: ', props.id);
     transition(DELETE, true);
     props.cancelInterview(id)
       .then(() => {

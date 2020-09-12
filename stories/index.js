@@ -140,21 +140,16 @@ storiesOf("InterviewerList", module)
   ));
 
 
-
-
-  //stories for the appointment component
-
 const message = {
   confirm:"Delete the appointment?" ,
   status: "Delete?",
   error:"Could not delete the appointment."
 }
 
-//to be used later
+
 const students=[
   {id: 1, name:"Lydia Miller-Jones", avatar: null}, 
 ]
-
 
 
 storiesOf("Appointment", module)

@@ -1,5 +1,3 @@
-// The InterviewerList component
-
 /*
 Our InterviewerList takes in three props:
 

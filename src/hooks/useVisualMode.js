@@ -8,7 +8,7 @@ Output: return a object with a mode property.
 export default function useVisualMode(initialMode) {
   
   const [mode, setMode] = useState(initialMode);
-  const [history, setHistory] = useState([initialMode]); // This line is new!
+  const [history, setHistory] = useState([initialMode]);
   
   const transition = function (mode, replace = false) {
     const history1 = [...history]
